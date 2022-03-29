@@ -10,9 +10,12 @@ import {
   reportGreetings,
 } from './hello_world';
 
+
 async function main() {
   console.log("Let's say hello to a Solana account...");
 
+  // All 5 following functions are preceded by 'await' because this is all asyncronous code
+  // which needs to wait for the network connection to finish
   // Establish connection to the cluster
   await establishConnection();
 
