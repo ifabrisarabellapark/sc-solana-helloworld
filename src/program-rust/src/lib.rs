@@ -8,6 +8,8 @@ use solana_program::{
     program_error::ProgramError,
     pubkey::Pubkey,
 };
+pub mod instructions;
+use crate::instructions::HelloInstructions;
 
 // Define the type of state stored in accounts
 #[derive(BorshSerialize, BorshDeserialize, Debug)]
@@ -25,10 +27,11 @@ entrypoint!(process_instruction);
 pub fn process_instruction(
     program_id: &Pubkey, // Public key of the account the hello world program was loaded into - you get a program id for every Solana smart contract, when you deploy it to the network
     accounts: &[AccountInfo], // The account to say hello to - it's object type is slice-array
-    _instruction_data: &[u8], // Ignored, all helloworld instructions are hellos
-                         // the result is an enum type of either an error or an ok type
+    instruction_data: &[u8], // Ignored, all helloworld instructions are hellos. The underscore preceding instruction_data means we're not using this parameter
+                             // the result is an enum type of either an error or an ok type
 ) -> ProgramResult {
     msg!("Hello World Rust program entrypoint");
+    let instruction = HelloInstructions::unpack(instruction_data)?;
 
     // Iterating accounts is safer than indexing
     let accounts_iter = &mut accounts.iter();
@@ -45,7 +48,19 @@ pub fn process_instruction(
 
     // Increment and store the number of times the account has been greeted
     let mut greeting_account = GreetingAccount::try_from_slice(&account.data.borrow())?;
-    greeting_account.counter += 1;
+
+    match instruction {
+        HelloInstructions::Increment => {
+            greeting_account.counter += 1;
+        }
+        HelloInstructions::Decrement => {
+            greeting_account.counter -= 1;
+        }
+        HelloInstructions::Set(val) => {
+            greeting_account.counter = val;
+        }
+    };
+
     // Next, serialize the variable called greeting_account
     greeting_account.serialize(&mut &mut account.data.borrow_mut()[..])?;
 
