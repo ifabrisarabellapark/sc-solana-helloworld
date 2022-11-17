@@ -7,7 +7,7 @@
 
 # Build & Deploy a Solana Smart Contract
 
-In this project we'll build a smart contract and deploy it to the Solana network (either by spinning up a local node or by uploading it to the Solana testnet). The project comprises of:
+In this project, we'll build a smart contract and deploy it to the Solana network (either by spinning up a local node or by uploading it to the Solana testnet). The project comprises:
 
 * An on-chain hello world program
 * A smart contract upgrade to sending and unpacking _data instructions_
@@ -55,7 +55,7 @@ solana-keygen new                           # if this is your first time using t
 solana-keygen verify <PUBKEY> prompt://     # to control the private key of a paper wallet address, use 'solana-keygen verify'
 ```
 
-4. (optional) Play around with your account address. In the context of Solana _wallet_ and _account address_ are synonims. 
+4. (optional) Play around with your account address. In the context of Solana _wallet_ and _account address_ are synonyms. 
 
 ```bash
 solana account <ADDRESS>               
@@ -73,7 +73,7 @@ solana-test-validator
 ```
 > Note: You may need to do some [system tuning](https://docs.solana.com/running-validator/validator-start#system-tuning) (and restart your computer) to get the validator to run
 
-> :no_entry_sign: :radioactive: :warning: **Important**: The `solana-test-validator` is literally your active connection to the Solana network. So, leave the validator running in the current terminal ane open a **new** terminal to run _all_ of the command from now onwards. You _must_ run two terminals in parallel for the contract deploymen to be successful. If the `solana-test-validator` stops running at any point in time, you'll use connection with the Solana network and you won't be able to deploy your smart contract.
+> :no_entry_sign: :radioactive: :warning: **Important**: The `solana-test-validator` is literally your active connection to the Solana network. So, leave the validator running in the current terminal and open a **new** terminal to run _all_ of the command from now onwards. You _must_ run two terminals in parallel for the contract deployment to be successful. If the `solana-test-validator` stops running at any point in time, you'll lose connection with the Solana network and you won't be able to deploy your smart contract.
 
 ### Build rust files
 
@@ -83,7 +83,7 @@ cargo clean                                   # clean outdated rust files if the
 cargo build                                   # build files (like Cargo.lock) to allow rust execution
 ```
 
-> Beware: `sudo` and `cargo` are antagonist. No **not** use them together! Using `sudo cargo build` makes the Cargo.lock file belong to the root user, meaning the file will have restricted permissions and won't be writable.
+> Beware: `sudo` and `cargo` are antagonist. No **not** use them together! Using `sudo cargo build` makes the Cargo.lock file belongs to the root user, meaning the file will have restricted permissions and won't be writable.
 
 ### Grant permissions
 (optional)
