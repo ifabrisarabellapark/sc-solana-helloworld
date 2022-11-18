@@ -55,7 +55,7 @@ solana-keygen new                           # if this is your first time using t
 solana-keygen verify <PUBKEY> prompt://     # to control the private key of a paper wallet address, use 'solana-keygen verify'
 ```
 
-4. (optional) Play around with your account address. In the context of Solana _wallet_ and _account address_ are synonyms. 
+4. (optional) Play around with your account address. In the context of Solana _pubkey_ and _wallet address_ are often synonyms. 
 
 ```bash
 solana account <ADDRESS>               
@@ -83,7 +83,7 @@ cargo clean                                   # clean outdated rust files if the
 cargo build                                   # build files (like Cargo.lock) to allow rust execution
 ```
 
-> Beware: `sudo` and `cargo` are antagonist. No **not** use them together! Using `sudo cargo build` makes the Cargo.lock file belongs to the root user, meaning the file will have restricted permissions and won't be writable.
+> Beware: `sudo` and `cargo` are antagonist. Do **not** use them together! Using `sudo cargo build` makes the Cargo.lock file belongs to the root user, meaning the file will have restricted permissions and won't be writable.
 
 ### Grant permissions
 (optional)
